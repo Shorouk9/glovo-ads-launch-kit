@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glovo Ads — Multi-Market Launch Kit</title>
+<meta name="description" content="A working launch kit for rolling out the 2026 Glovo Ads formats across 21 markets, built to survive the Uber / SSW carve-out.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --yellow:#FFC72C;
+  --yellow-2:#FFD65A;
+  --yellow-soft:#FFF3C7;
+  --green:#00A082;
+  --green-dark:#007F67;
+  --green-soft:#DDF3EC;
+  --ink:#1F1F1F;
+  --ink-2:#434343;
+  --muted:#707070;
+  --line:#E8E4D6;
+  --bg:#FFFFFF;
+  --bg-2:#FFFBEE;
+  --red:#D9453D;
+  --amber:#E89B16;
+  --radius:20px;
+  --max:1120px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+h1,h2,h3,h4{font-weight:800;letter-spacing:-0.015em;line-height:1.12}
+h1{font-size:clamp(2.2rem,5.2vw,3.8rem)}
+h2{font-size:clamp(1.7rem,3.2vw,2.4rem);margin-bottom:12px}
+h3{font-size:1.15rem;margin-bottom:8px}
+p{color:var(--ink-2)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--green);margin-bottom:12px}
+.eyebrow::before{content:"";width:22px;height:4px;border-radius:2px;background:var(--yellow)}
+.lede{font-size:1.1rem;max-width:740px;color:var(--ink-2)}
+section{padding:76px 0}
+section.alt{background:var(--bg-2)}
+section.yel{background:var(--yellow)}
+section.yel .eyebrow{color:var(--ink)}section.yel .eyebrow::before{background:var(--green)}
+section.yel p{color:var(--ink-2)}
+.grid{display:grid;gap:18px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.card{background:#fff;border:2px solid var(--line);border-radius:var(--radius);padding:24px}
+.card.y{background:var(--yellow);border-color:var(--yellow)}
+.card.y p{color:var(--ink)}
+.card.g{background:var(--green);border-color:var(--green);color:#fff}
+.card.g p,.card.g h3{color:#fff}
+.card.d{background:var(--ink);color:#fff;border-color:var(--ink)}
+.card.d p{color:#D6D6D6}
+.tag{display:inline-block;font-size:.7rem;font-weight:800;padding:5px 11px;border-radius:999px;letter-spacing:.06em;text-transform:uppercase}
+.tag.ssw{background:var(--ink);color:var(--yellow)}
+.tag.uber{background:var(--green);color:#fff}
+.tag.w1{background:var(--yellow);color:var(--ink)}
+.tag.w2{background:var(--yellow-soft);color:var(--ink);border:1px solid var(--yellow)}
+.tag.w3{background:#F3F0E4;color:var(--ink)}
+.tag.rag-g{background:var(--green);color:#fff}
+.tag.rag-a{background:var(--amber);color:#fff}
+.tag.rag-r{background:var(--red);color:#fff}
+.note{font-size:.82rem;color:var(--muted)}
+.hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);padding:0 2px}
+
+/* buttons */
+.btn{font-family:inherit;font-weight:800;font-size:.82rem;padding:9px 16px;border-radius:999px;border:2px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer;transition:.15s}
+.btn:hover{background:var(--ink);color:var(--yellow)}
+.btn.sm{padding:6px 12px;font-size:.75rem}
+.btn.ghost{border-color:var(--line);color:var(--muted)}
+.btn.ghost:hover{border-color:var(--ink);color:var(--ink);background:#fff}
+.btn.green{background:var(--green);border-color:var(--green);color:#fff}
+.btn.green:hover{background:var(--green-dark);border-color:var(--green-dark);color:#fff}
+.btn.on{background:var(--ink);color:var(--yellow);border-color:var(--ink)}
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:18px 0}
+.edit-hint{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;font-weight:700;color:var(--green);background:var(--green-soft);padding:5px 11px;border-radius:999px}
+.edit-hint::before{content:"✎"}
+
+/* inputs */
+input.n{width:48px;font-family:inherit;font-weight:800;font-size:.85rem;text-align:center;padding:5px 4px;border:2px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+input.n:focus,select.s:focus,input.v:focus,[contenteditable]:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px var(--green-soft)}
+select.s{font-family:inherit;font-weight:800;font-size:.8rem;padding:5px 8px;border:2px solid var(--line);border-radius:10px;background:#fff}
+input.v{font-family:inherit;font-weight:800;font-size:.9rem;text-align:right;width:84px;padding:5px 8px;border:2px solid var(--line);border-radius:10px}
+[contenteditable]{border:2px dashed transparent;border-radius:8px;padding:2px 4px;transition:.15s}
+[contenteditable]:hover{border-color:var(--yellow)}
+.dirty{box-shadow:inset 0 0 0 2px var(--yellow)}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:var(--yellow);border-bottom:3px solid var(--ink)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px;gap:16px}
+.brand{display:flex;align-items:baseline;gap:8px;font-weight:800;color:var(--green);font-size:1.3rem;letter-spacing:-.02em}
+.brand small{font-size:.8rem;color:var(--ink);font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+nav ul{display:flex;gap:16px;list-style:none;font-size:.84rem;font-weight:800;overflow-x:auto}
+nav ul a{text-decoration:none;color:var(--ink);white-space:nowrap;padding:6px 2px;border-bottom:3px solid transparent}
+nav ul a:hover{border-color:var(--green)}
+
+/* hero */
+.hero{background:var(--yellow);padding:80px 0 76px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-140px;top:-140px;width:520px;height:520px;border-radius:50%;background:var(--yellow-2);z-index:0}
+.hero .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:end;position:relative;z-index:1}
+.hero .eyebrow{color:var(--ink)}.hero .eyebrow::before{background:var(--green)}
+.hero h1{margin-bottom:18px;color:var(--ink)}
+.hero h1 em{font-style:normal;color:var(--green)}
+.hero p{color:var(--ink-2)}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.pill{background:var(--ink);color:var(--yellow);padding:8px 14px;border-radius:999px;font-size:.8rem;font-weight:800}
+.hero-stat{background:var(--green);color:#fff;border-radius:24px;padding:28px}
+.hero-stat .big{font-size:2.6rem;font-weight:800;color:var(--yellow);line-height:1}
+.hero-stat .row{padding:14px 0;border-bottom:2px solid rgba(255,255,255,.18)}
+.hero-stat .row:last-child{border:none}
+.hero-stat small{color:#D9F2EB;font-size:.78rem;display:block;margin-top:4px}
+
+.stat .big{font-size:2rem;font-weight:800;color:var(--green);line-height:1.1}
+.stat .lab{font-size:.8rem;color:var(--muted);margin-top:6px}
+.format{position:relative;overflow:hidden;border-top:8px solid var(--yellow)}
+.format .num{position:absolute;right:16px;top:8px;font-size:3rem;font-weight:800;color:var(--green);opacity:.15}
+
+/* table */
+.tbl-wrap{overflow-x:auto;border:2px solid var(--line);border-radius:var(--radius);background:#fff}
+table{width:100%;border-collapse:collapse;font-size:.86rem;min-width:960px}
+th,td{padding:11px 10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--bg-2);cursor:pointer;user-select:none;white-space:nowrap}
+th.sorted{color:var(--green)}
+tr:last-child td{border-bottom:none}
+.score{font-weight:800;font-size:1rem;color:var(--green)}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:.8rem;color:var(--muted);margin-top:12px}
+.wave-sum{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.wave-sum span{font-size:.8rem;font-weight:700;background:#fff;border:2px solid var(--line);padding:6px 12px;border-radius:999px}
+
+/* gantt */
+.gantt{display:grid;grid-template-columns:200px repeat(12,1fr);gap:4px;font-size:.78rem;align-items:center}
+.gantt .hd{font-weight:800;color:var(--muted);text-align:center;font-size:.68rem}
+.gantt .lab{font-weight:700;padding-right:8px}
+.gantt .cell{height:28px;border-radius:8px;background:#F3F0E4;cursor:pointer;transition:.1s}
+.gantt .cell:hover{outline:2px solid var(--green)}
+.gantt .cell.on{background:var(--yellow)}
+.gantt .cell.on.g{background:var(--green)}
+.gantt .cell.on.d{background:var(--ink)}
+.gantt .cell.ms{background:transparent;cursor:default;position:relative}
+.gantt .cell.ms:hover{outline:none}
+.gantt .cell.ms::after{content:"◆";position:absolute;inset:0;display:grid;place-items:center;color:var(--green);font-size:1rem}
+
+/* checklist */
+.check{list-style:none}
+.check li{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px dashed var(--line);cursor:pointer}
+.check li:last-child{border:none}
+.check .box{width:22px;height:22px;border-radius:7px;border:2px solid var(--ink);flex-shrink:0;margin-top:1px;display:grid;place-items:center;font-size:.75rem;color:transparent}
+.check li.done .box{background:var(--green);border-color:var(--green);color:#fff}
+.check li.done span.t{text-decoration:line-through;color:var(--muted)}
+.progress{height:12px;background:#F3F0E4;border-radius:6px;overflow:hidden;margin:10px 0 18px}
+.progress div{height:100%;background:var(--green);width:0;transition:width .3s}
+
+/* raci */
+.raci th{cursor:default}
+.raci td{text-align:center;font-weight:800}
+.raci td:first-child{text-align:left;font-weight:600}
+.r{color:var(--green)} .a{color:var(--ink)} .c{color:var(--amber)} .i{color:var(--muted)}
+
+/* kpi tree */
+.tree .root{background:var(--green);color:#fff;border-radius:var(--radius);padding:22px;text-align:center}
+.tree .root .big{font-size:1.7rem;font-weight:800;color:var(--yellow)}
+.tree .lvl{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.tree .node{background:#fff;border:2px solid var(--line);border-radius:14px;padding:14px;font-size:.84rem}
+.tree .node b{display:block;font-size:.92rem;margin-bottom:4px}
+.tree .node small{color:var(--muted)}
+.connector{height:20px;border-left:3px dashed var(--yellow);margin-left:50%}
+
+/* exec */
+.exec{background:#fff;border:2px solid var(--ink);border-radius:var(--radius);overflow:hidden}
+.exec header{background:var(--ink);color:#fff;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.exec header h3{margin:0;color:var(--yellow)}
+.exec header small{color:#CFCFCF;display:flex;align-items:center;gap:8px}
+.exec .body{padding:22px;display:grid;grid-template-columns:1.1fr .9fr;gap:22px}
+.exec .kv{display:grid;grid-template-columns:1fr auto;gap:8px 16px;font-size:.88rem;align-items:center}
+.exec .kv .k{color:var(--ink-2)}
+.exec ul{padding-left:18px;font-size:.88rem;color:var(--ink-2)}
+.exec li{margin-bottom:6px}
+.exec h4{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin:14px 0 6px}
+.exec h4:first-child{margin-top:0}
+
+/* carve-out */
+.lanes{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.lane{border-radius:var(--radius);padding:24px;border:2px solid var(--line);background:#fff}
+.lane.ssw{border-top:10px solid var(--ink)}
+.lane.uber{border-top:10px solid var(--green)}
+.lane .mk{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+.lane .mk span{font-size:.76rem;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--yellow-soft);border:1px solid var(--yellow)}
+.split{width:100%;border-collapse:collapse;font-size:.88rem;background:#fff;border:2px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.split th{cursor:default}
+.split td{vertical-align:top}
+.phase{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.phase .p{border-radius:16px;padding:18px;border:2px solid var(--line);background:#fff}
+.phase .p b{display:block;margin-bottom:6px}
+.phase .p .when{font-size:.74rem;font-weight:800;color:var(--green);letter-spacing:.08em;text-transform:uppercase}
+.phase .p ul{padding-left:16px;font-size:.85rem;color:var(--ink-2);margin-top:8px}
+
+footer{background:var(--ink);color:#BDBDBD;padding:44px 0;font-size:.82rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center}
+footer b{color:var(--yellow)}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--ink);color:var(--yellow);font-weight:800;font-size:.85rem;padding:12px 20px;border-radius:999px;transition:.25s;z-index:99;opacity:0}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+@media (max-width:860px){
+  .hero .wrap{grid-template-columns:1fr}
+  .exec .body{grid-template-columns:1fr}
+  .lanes{grid-template-columns:1fr}
+  .phase{grid-template-columns:1fr}
+  .gantt{grid-template-columns:120px repeat(12,1fr);font-size:.7rem}
+  section{padding:54px 0}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">Glovo <small>· Ads Launch Kit</small></div>
+    <ul>
+      <li><a href="#context">Context</a></li>
+      <li><a href="#scope">Scope</a></li>
+      <li><a href="#tiering">Tiering</a></li>
+      <li><a href="#playbook">Playbook</a></li>
+      <li><a href="#kpis">KPIs</a></li>
+      <li><a href="#carveout">Carve-out</a></li>
+      <li><a href="#next">Next</a></li>
+      <li><button class="btn sm" id="resetAll">Reset everything</button></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Partner Revenue · Global · Proposal</span>
+      <h1>Taking the 2026 Glovo Ads formats to <em>21 markets</em> — without letting the carve-out slow a single launch.</h1>
+      <p class="lede">A working launch kit for the four formats announced at Retail Media Day: a market tiering model you can rescore, a wave-based playbook with a live timeline, a KPI tree with an editable executive one-pager, and a governance layer that keeps Uber-retained and SSW markets on one roadmap.</p>
+      <div class="hero-meta">
+        <span class="pill">3 waves · 12 weeks each</span>
+        <span class="pill">21 markets · 2 lanes</span>
+        <span class="pill">4 ad formats</span>
+        <span class="pill">Everything editable</span>
+      </div>
+    </div>
+    <div class="hero-stat">
+      <div class="row"><div class="big">+32%</div><small>Europe AdTech revenue YoY, Q2 2026</small></div>
+      <div class="row"><div class="big">3% → 4%+</div><small>AdTech as share of GMV, today vs long-term target</small></div>
+      <div class="row"><div class="big">16 / 5</div><small>Glovo markets staying with Uber vs moving to SSW Partners</small></div>
+    </div>
+  </div>
+</header>
+
+<!-- CONTEXT -->
+<section id="context">
+  <div class="wrap">
+    <span class="eyebrow">01 · The ride so far</span>
+    <h2>Ads is the growth engine. The footprint is being reshaped underneath it.</h2>
+    <p class="lede" style="margin-bottom:28px">Three things are true at the same time, and the launch plan has to hold all three.</p>
+    <div class="grid g3">
+      <div class="card y">
+        <h3>Ads is outperforming everything else</h3>
+        <p>Europe GMV grew 8.4% in Q2 2026, Quick Commerce 19%, and the high-margin AdTech line 32%. Group AdTech is approaching a €1.5bn run-rate at 3% of GMV, with a stated >4% long-term target. Every point of penetration is high-margin revenue — launch velocity is directly a P&amp;L lever.</p>
+      </div>
+      <div class="card g">
+        <h3>The product has a clear 2026 roadmap</h3>
+        <p>Retail Media Day at Yellow Park (May 2026) introduced four new in-app opportunities for brands: audience segmentation, direct product links, video stories, and product cross-sell. Poland was named a key growth market. These formats are the launch scope of this kit.</p>
+      </div>
+      <div class="card d">
+        <h3>Ownership is about to split</h3>
+        <p>Uber's €13bn offer for Delivery Hero keeps Glovo in 16 markets, while Spain, Portugal, Poland, Romania and Moldova go to SSW Partners. Closing is expected to take ~a year. Bosnia exited in August; Spain pulled out of 63 towns. The map is being concentrated, and HQ sits in a market that is moving.</p>
+      </div>
+    </div>
+    <div class="grid g4" style="margin-top:18px">
+      <div class="card stat"><div class="big">€13.2bn</div><div class="lab">Group GMV Q2 2026, +11.3% LfL</div></div>
+      <div class="card stat"><div class="big">17–19%</div><div class="lab">FY26 revenue growth guidance, raised from 14–16%</div></div>
+      <div class="card stat"><div class="big">5–6×</div><div class="lab">ROAS cited for Brand Ads</div></div>
+      <div class="card stat"><div class="big">40k+</div><div class="lab">Partners on the AI assistant; +15% orders for restaurants using it</div></div>
+    </div>
+    <p class="note" style="margin-top:14px">Figures from Delivery Hero Q2 2026 results, the May 2026 company presentation, and public coverage of Retail Media Day and the Uber offer.</p>
+  </div>
+</section>
+
+<!-- SCOPE -->
+<section id="scope" class="alt">
+  <div class="wrap">
+    <span class="eyebrow">02 · Launch scope</span>
+    <h2>Four formats, one bundle, launched wave by wave</h2>
+    <p class="lede" style="margin-bottom:28px">Launching them as a bundle per market (rather than format by format across all markets) cuts the number of Legal, Finance and Commercial cycles by roughly 4×, and gives each market <span class="hl">one "new Glovo Ads" story to sell</span>.</p>
+    <div class="grid g4">
+      <div class="card format"><div class="num">1</div><h3>Audience segmentation</h3><p>Brands target by purchase behaviour and category affinity. Heaviest Legal and Data dependency — consent and cross-market audience rules differ by country.</p></div>
+      <div class="card format"><div class="num">2</div><h3>Direct product links</h3><p>Ad tap goes straight to the SKU. Lowest friction to launch; needs catalogue hygiene in grocery and retail partners.</p></div>
+      <div class="card format"><div class="num">3</div><h3>Video stories</h3><p>Full-screen in-app video. Design, localisation and creative-spec guidelines for agencies are the long poles.</p></div>
+      <div class="card format"><div class="num">4</div><h3>Product cross-sell</h3><p>Sponsored "add to basket" at checkout. Highest expected ROAS; depends on Q-commerce depth in the market.</p></div>
+    </div>
+    <div class="card" style="margin-top:18px;border-color:var(--green)">
+      <h3>What "launched" means</h3>
+      <p>A format counts as launched in a market only when all five are true: (1) live in the app for 100% of eligible users, (2) bookable in Brands Ads Manager or the self-serve tool, (3) priced and billable in local currency, (4) at least one reference campaign measured end-to-end, (5) local Commercial team enabled with a one-pager and a deck. Partial states are tracked as "soft-live" and are never reported upward as done.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TIERING -->
+<section id="tiering">
+  <div class="wrap">
+    <span class="eyebrow">03 · Market tiering model</span>
+    <h2>Which markets go first, and why</h2>
+    <p class="lede">Each market is scored 1–5 on five dimensions. <b>Readiness = ad maturity + Q-commerce momentum + advertiser depth + ops readiness − regulatory friction.</b> Ownership lane and transition risk then decide wave placement — a high-readiness market with high transition risk is not automatically Wave 1.</p>
+    <div class="tools">
+      <span class="edit-hint">Edit any score — readiness recalculates, wave is yours to set</span>
+      <span style="flex:1"></span>
+      <button class="btn sm ghost" data-f="all">All 21</button>
+      <button class="btn sm ghost" data-f="uber">Uber-retained</button>
+      <button class="btn sm ghost" data-f="ssw">SSW</button>
+      <button class="btn sm ghost" data-f="1">Wave 1</button>
+      <button class="btn sm ghost" data-f="2">Wave 2</button>
+      <button class="btn sm ghost" data-f="3">Wave 3</button>
+      <button class="btn sm" id="autoWave">Auto-assign waves</button>
+      <button class="btn sm green" id="resetMkt">Reset scores</button>
+    </div>
+    <div class="tbl-wrap">
+      <table id="mkt">
+        <thead><tr>
+          <th data-k="name">Market</th>
+          <th data-k="lane">Lane</th>
+          <th data-k="ad">Ad maturity</th>
+          <th data-k="qc">Q-commerce</th>
+          <th data-k="adv">Advertiser depth</th>
+          <th data-k="ops">Ops readiness</th>
+          <th data-k="reg">Reg. friction</th>
+          <th data-k="score" class="sorted">Readiness</th>
+          <th data-k="risk">Transition risk</th>
+          <th data-k="wave">Wave</th>
+          <th>Rationale</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="wave-sum" id="waveSum"></div>
+    <div class="legend">
+      <span><b>Readiness</b> max 19 · <b>Auto-assign</b> uses readiness ≥ 14 → Wave 1, ≥ 10 → Wave 2, else Wave 3, then bumps markets with transition risk ≥ 4 down one wave unless readiness ≥ 17</span>
+      <span>Default scores are illustrative, built from public signals, meant to be replaced with internal data in week 1. Edits are saved in your browser.</span>
+    </div>
+    <div class="grid g3" style="margin-top:22px">
+      <div class="card"><span class="tag w1">Wave 1</span><h3 style="margin-top:10px">Revenue first, de-risked</h3><p>Spain, Italy, Poland, Portugal, Romania. Four of five are SSW-bound, so Wave 1 launches are built hand-over-ready from day one: fully documented, no HQ-only dependencies. Italy anchors the Uber lane so Lane B is never a step behind.</p></div>
+      <div class="card"><span class="tag w2">Wave 2</span><h3 style="margin-top:10px">Scale the Uber lane</h3><p>Ukraine, Morocco, Kazakhstan, Nigeria, Kenya, Bulgaria, Croatia, Georgia. Strong Q-commerce momentum, growing FMCG presence, low transition risk. Partner Ads self-serve adoption is the lever as much as Brand Ads.</p></div>
+      <div class="card"><span class="tag w3">Wave 3</span><h3 style="margin-top:10px">Complete the footprint</h3><p>Serbia, Tunisia, Armenia, Kyrgyzstan, Montenegro, Moldova, Uganda, Côte d'Ivoire. Smaller advertiser bases; launched with a lighter "core three" (links, cross-sell, stories), segmentation gated on data volume.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAYBOOK -->
+<section id="playbook" class="yel">
+  <div class="wrap">
+    <span class="eyebrow">04 · Launch playbook</span>
+    <h2>One 12-week plan, reused three times</h2>
+    <p class="lede" style="margin-bottom:28px">Seven workstreams, four gates. Waves overlap by four weeks so Legal and Finance never idle and local teams get a predictable rhythm.</p>
+
+    <div class="card" style="overflow-x:auto">
+      <div class="tools" style="margin-top:0">
+        <span class="edit-hint">Click any cell to toggle a workstream week</span>
+        <span style="flex:1"></span>
+        <button class="btn sm green" id="resetGantt">Reset timeline</button>
+      </div>
+      <div class="gantt" id="gantt"></div>
+      <div class="legend" style="margin-top:14px">
+        <span><span style="display:inline-block;width:12px;height:12px;background:var(--yellow);border-radius:3px;vertical-align:middle;border:1px solid #d9a800"></span> Workstream active</span>
+        <span><span style="display:inline-block;width:12px;height:12px;background:var(--green);border-radius:3px;vertical-align:middle"></span> Local market ownership</span>
+        <span><span style="display:inline-block;width:12px;height:12px;background:var(--ink);border-radius:3px;vertical-align:middle"></span> Launch &amp; hypercare</span>
+        <span>◆ Gate review</span>
+      </div>
+    </div>
+
+    <div class="grid g2" style="margin-top:22px">
+      <div class="card">
+        <h3>Four gates</h3>
+        <p><b>G1 · Wk 2 — Scope lock.</b> Formats in/out per market, pricing architecture agreed, Legal risk register opened, carve-out dependencies flagged.<br><br>
+        <b>G2 · Wk 5 — Build ready.</b> Product config complete, creative specs published, billing entity confirmed, audience rules signed off by Legal and Data.<br><br>
+        <b>G3 · Wk 8 — Market ready.</b> Local Commercial enabled, reference advertisers committed, reporting pipeline tested with dummy campaigns.<br><br>
+        <b>G4 · Wk 10 — Go / No-go.</b> Launch criteria met, hypercare roster staffed, exec one-pager pre-written for both outcomes.</p>
+      </div>
+      <div class="card">
+        <div class="tools" style="margin-top:0;margin-bottom:6px"><h3 style="margin:0">Readiness checklist (per market)</h3><span style="flex:1"></span><button class="btn sm ghost" id="resetCheck">Clear</button></div>
+        <div class="progress"><div id="prog"></div></div>
+        <ul class="check" id="checklist">
+          <li><span class="box">✓</span><span class="t">Ownership lane confirmed; deal-dependency review done</span></li>
+          <li><span class="box">✓</span><span class="t">Local ad disclosure / labelling rules mapped (Legal)</span></li>
+          <li><span class="box">✓</span><span class="t">Audience segmentation rules approved; cross-market audiences ring-fenced (Data + Legal)</span></li>
+          <li><span class="box">✓</span><span class="t">Rate card in local currency; billing entity and tax treatment confirmed (Finance)</span></li>
+          <li><span class="box">✓</span><span class="t">Creative specs and localisation kit published (Design)</span></li>
+          <li><span class="box">✓</span><span class="t">Brands Ads Manager / self-serve config live in staging (Product)</span></li>
+          <li><span class="box">✓</span><span class="t">3+ reference advertisers signed; agency briefed (Commercial)</span></li>
+          <li><span class="box">✓</span><span class="t">Local Commercial enablement delivered: one-pager, deck, FAQ, objection handling</span></li>
+          <li><span class="box">✓</span><span class="t">Reporting pipeline validated; KPI baselines captured</span></li>
+          <li><span class="box">✓</span><span class="t">Hypercare roster, escalation path and rollback plan agreed</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:22px;overflow-x:auto">
+      <h3>RACI</h3>
+      <p class="note" style="margin-bottom:12px">R = Responsible · A = Accountable · C = Consulted · I = Informed. The Partner Revenue PM is Accountable for the launch as a whole and Responsible for the coordination layer, never for another team's deliverable.</p>
+      <table class="raci" style="min-width:760px">
+        <thead><tr><th>Deliverable</th><th>PR PM</th><th>Product</th><th>Legal</th><th>Design</th><th>Finance</th><th>Commercial</th><th>Data</th><th>Local GM</th></tr></thead>
+        <tbody>
+          <tr><td>Launch plan &amp; timeline</td><td class="a">A/R</td><td class="c">C</td><td class="c">C</td><td class="c">C</td><td class="c">C</td><td class="c">C</td><td class="i">I</td><td class="c">C</td></tr>
+          <tr><td>Format configuration</td><td class="c">C</td><td class="a">A/R</td><td class="i">I</td><td class="c">C</td><td class="i">I</td><td class="i">I</td><td class="c">C</td><td class="i">I</td></tr>
+          <tr><td>Ad labelling &amp; audience compliance</td><td class="c">C</td><td class="c">C</td><td class="a">A/R</td><td class="i">I</td><td class="i">I</td><td class="i">I</td><td class="r">R</td><td class="c">C</td></tr>
+          <tr><td>Creative specs &amp; localisation</td><td class="c">C</td><td class="c">C</td><td class="i">I</td><td class="a">A/R</td><td class="i">I</td><td class="c">C</td><td class="i">I</td><td class="c">C</td></tr>
+          <tr><td>Pricing, billing, tax</td><td class="c">C</td><td class="i">I</td><td class="c">C</td><td class="i">I</td><td class="a">A/R</td><td class="c">C</td><td class="i">I</td><td class="c">C</td></tr>
+          <tr><td>Reference advertisers &amp; enablement</td><td class="r">R</td><td class="i">I</td><td class="i">I</td><td class="c">C</td><td class="i">I</td><td class="a">A</td><td class="i">I</td><td class="r">R</td></tr>
+          <tr><td>KPI pipeline &amp; dashboards</td><td class="r">R</td><td class="c">C</td><td class="i">I</td><td class="i">I</td><td class="c">C</td><td class="i">I</td><td class="a">A</td><td class="i">I</td></tr>
+          <tr><td>Exec status reporting</td><td class="a">A/R</td><td class="c">C</td><td class="i">I</td><td class="i">I</td><td class="c">C</td><td class="c">C</td><td class="c">C</td><td class="i">I</td></tr>
+          <tr><td>Carve-out dependency review</td><td class="r">R</td><td class="c">C</td><td class="a">A</td><td class="i">I</td><td class="r">R</td><td class="i">I</td><td class="c">C</td><td class="i">I</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- KPIS -->
+<section id="kpis">
+  <div class="wrap">
+    <span class="eyebrow">05 · KPIs &amp; executive reporting</span>
+    <h2>One number at the top, six drivers underneath, one page every two weeks</h2>
+    <p class="lede" style="margin-bottom:28px">The north star is the one the Group already reports to the market. Everything below it exists to explain movement in that number, per market and per format.</p>
+
+    <div class="tree">
+      <div class="root"><small style="color:#D9F2EB;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase">North star</small><div class="big">AdTech revenue as % of GMV</div><small style="color:#D9F2EB">Today ~3% · long-term target >4% · tracked per market, per wave</small></div>
+      <div class="connector"></div>
+      <div class="lvl">
+        <div class="node"><b>Active advertisers</b>Brands + partners with a live campaign in the period<small><br>Driver of breadth</small></div>
+        <div class="node"><b>Self-serve adoption</b>% of eligible partners who have run a Partner Ads campaign<small><br>Driver of long-tail revenue</small></div>
+        <div class="node"><b>Format mix</b>Share of spend on the four new formats vs legacy placements<small><br>Launch success signal</small></div>
+        <div class="node"><b>ROAS (advertiser-facing)</b>Attributed sales ÷ ad spend<small><br>Retention driver; floor of 5×</small></div>
+        <div class="node"><b>Fill rate &amp; CPM</b>Inventory sold ÷ available; price realised<small><br>Monetisation efficiency</small></div>
+        <div class="node"><b>Time-to-first-campaign</b>Days from format go-live to first booked campaign<small><br>Enablement quality</small></div>
+      </div>
+      <div class="connector"></div>
+      <div class="lvl">
+        <div class="node"><b>Launch health</b>Gates passed on time, open blockers by owner, soft-live vs live markets</div>
+        <div class="node"><b>Guardrails</b>User-facing ad load, CTR floor, complaint rate — a launch that lifts revenue but hurts experience is flagged red</div>
+        <div class="node"><b>Carve-out exposure</b>Revenue running on shared infra or cross-lane contracts</div>
+      </div>
+    </div>
+
+    <div class="tools" style="margin-top:36px">
+      <h3 style="margin:0">Executive one-pager — live template</h3>
+      <span class="edit-hint">Click any text or number to edit</span>
+      <span style="flex:1"></span>
+      <button class="btn sm green" id="resetExec">Reset to sample</button>
+    </div>
+    <div class="exec" id="exec">
+      <header>
+        <h3 contenteditable="true" data-key="title">Glovo Ads 2026 Formats · Wave 1 · Fortnight 5</h3>
+        <small>Overall status:
+          <select class="s" id="rag" data-key="rag"><option value="g">Green</option><option value="a" selected>Amber</option><option value="r">Red</option></select>
+          <span contenteditable="true" data-key="sub">On track for G4 in ES, IT, PT · PL and RO slip 2 weeks</span>
+        </small>
+      </header>
+      <div class="body">
+        <div>
+          <h4>Headline</h4>
+          <p style="font-size:.9rem" contenteditable="true" data-key="headline">Three of five markets reach go/no-go on schedule. Poland and Romania slip two weeks on audience-segmentation legal review; direct links and cross-sell will go live there on time as a partial bundle. No impact to Wave 2 start.</p>
+          <h4>Decisions needed this fortnight</h4>
+          <ul contenteditable="true" data-key="decisions">
+            <li>Approve PL/RO partial-bundle launch (links + cross-sell first, segmentation + stories at +2 wks).</li>
+            <li>Confirm billing entity for SSW-bound markets stays on the current Glovo entity through close.</li>
+            <li>Sign off video-story creative spec v1.2 so agencies can start production in Wave 2 markets.</li>
+          </ul>
+          <h4>Top risks</h4>
+          <ul contenteditable="true" data-key="risks">
+            <li>RED — Cross-market audience segments require ring-fencing before close. Owner: Legal + Data. Due wk 11.</li>
+            <li>AMBER — Two reference advertisers in RO not yet signed. Owner: Commercial. Due wk 9.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Scorecard</h4>
+          <div class="kv" id="kv"></div>
+          <p class="note" style="margin-top:14px">Sample numbers. The template is the deliverable: headline, decisions, risks, scorecard — nothing an exec has to scroll for.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARVE-OUT -->
+<section id="carveout" class="alt">
+  <div class="wrap">
+    <span class="eyebrow">06 · Launching through the carve-out</span>
+    <h2>Two lanes, one roadmap, zero paused launches</h2>
+    <p class="lede" style="margin-bottom:28px">Nothing has been said publicly about how Glovo Ads itself will be run through the transaction. This is a framework to keep launching regardless of how the deal lands — and to make whatever gets handed over clean.</p>
+
+    <div class="lanes">
+      <div class="lane ssw">
+        <span class="tag ssw">Lane A · SSW Partners</span>
+        <div class="mk"><span>Spain</span><span>Portugal</span><span>Poland</span><span>Romania</span><span>Moldova</span></div>
+        <p><b>Profile:</b> Glovo's most mature ad markets, deepest FMCG and agency relationships, home of HQ and Brands Ads Manager.<br><br><b>Risk:</b> not readiness — continuity. Tooling, data pipelines and brand master agreements may need to be carved out or re-papered.<br><br><b>Rule:</b> build every launch here as hand-over-ready. Full documentation, no HQ-only dependencies, no undocumented workarounds.</p>
+      </div>
+      <div class="lane uber">
+        <span class="tag uber">Lane B · Uber-retained</span>
+        <div class="mk"><span>Italy</span><span>Ukraine</span><span>Georgia</span><span>Kazakhstan</span><span>Kyrgyzstan</span><span>Armenia</span><span>Bulgaria</span><span>Croatia</span><span>Serbia</span><span>Montenegro</span><span>Morocco</span><span>Tunisia</span><span>Nigeria</span><span>Kenya</span><span>Uganda</span><span>Côte d'Ivoire</span></div>
+        <p><b>Profile:</b> Italy is mature; most others are earlier-stage with a heavier Partner Ads (self-serve SME) weighting. Africa is the fastest-growing region.<br><br><b>Risk:</b> readiness and localisation, not ownership disruption. Longer-term question: convergence with Uber Eats' ad stack.<br><br><b>Rule:</b> no Lane-A-only features. Lane B never becomes a second-class product before anyone has decided its future.</p>
+      </div>
+    </div>
+
+    <h3 style="margin:32px 0 12px">What stays shared, what prepares to diverge, what gets decided now</h3>
+    <div style="overflow-x:auto">
+    <table class="split" style="min-width:720px">
+      <thead><tr><th style="width:28%">Keep shared until close</th><th style="width:36%">Prepare to diverge</th><th>Decide early</th></tr></thead>
+      <tbody><tr>
+        <td>Product roadmap and the four formats<br><br>Measurement standards and attribution model<br><br>Pricing architecture (not local rate cards)<br><br>Exec reporting cadence and template<br><br>Creative specs</td>
+        <td>Brand master agreements spanning both lanes (Unilever, PepsiCo, Heineken-type deals) — map which clauses are lane-specific<br><br>Billing entities and payment collection<br><br>Audience data: cross-market segments ring-fenced by lane before close<br><br>Agency partnerships set up across 11+ markets<br><br>Access and permissions in Brands Ads Manager</td>
+        <td>Launch order: Lane A first for revenue, Italy in Wave 1 so Lane B is never behind<br><br>Which market cluster owner sits on each lane<br><br>Freeze list for shared infrastructure during the TSA period<br><br>Whether Wave 3 completes before or after close (recommendation: before)</td>
+      </tr></tbody>
+    </table>
+    </div>
+
+    <h3 style="margin:32px 0 12px">Governance</h3>
+    <div class="grid g3">
+      <div class="card"><h3>Structure</h3><p>One global launch lead (this role). One market-cluster owner per lane. Product, Legal, Finance, Data as standing members of a fortnightly launch council.</p></div>
+      <div class="card"><h3>Carve-out impact review</h3><p>Monthly, with Legal and Finance. Every launch is checked for deal-dependency: does this contract, dataset or integration need to survive separation? Output feeds the RAID log under a dedicated "deal risk" category.</p></div>
+      <div class="card"><h3>Escalation</h3><p>Any blocker older than five working days goes on the exec one-pager with a named owner and a decision request. Lane conflicts escalate to the Partner Revenue lead, never resolved informally.</p></div>
+    </div>
+
+    <h3 style="margin:32px 0 12px">Timeline overlay</h3>
+    <div class="phase">
+      <div class="p"><span class="when">Phase 1 · Pre-close</span><b>Launch normally, document as if handing over</b><ul><li>Waves 1–3 run on the standard playbook</li><li>Every market's launch pack is complete and lane-tagged</li><li>Dependency map built and reviewed monthly</li></ul></div>
+      <div class="p"><span class="when">Phase 2 · Transition / TSA</span><b>Freeze shared infra, run parallel reporting</b><ul><li>No changes to shared tooling without council sign-off</li><li>Exec one-pager produced per lane as well as consolidated</li><li>Contracts and audiences separated on the agreed list</li></ul></div>
+      <div class="p"><span class="when">Phase 3 · Post-close</span><b>Two roadmaps, one common ancestor</b><ul><li>Playbook, KPI tree and template remain the shared standard</li><li>Each lane iterates independently</li><li>Learnings still exchanged where agreements allow</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT -->
+<section id="next">
+  <div class="wrap">
+    <span class="eyebrow">07 · First 30 days in the seat</span>
+    <h2>Replace the assumptions, keep the structure</h2>
+    <div class="grid g3">
+      <div class="card y"><h3>Days 1–10</h3><p>Swap the illustrative tiering scores for internal data. Confirm the real format list and sequencing with Ads Product. Meet every market-cluster lead and the Legal, Finance and Data counterparts. Stand up the RAID log and the exec template.</p></div>
+      <div class="card g"><h3>Days 11–20</h3><p>Run the first carve-out dependency review. Lock Wave 1 scope at G1. Publish the launch calendar to all local teams. Agree KPI definitions and pipeline ownership with Data.</p></div>
+      <div class="card d"><h3>Days 21–30</h3><p>First fortnightly exec one-pager delivered. Wave 1 moving toward G2. Wave 2 kickoff scheduled. Any gap between this kit and reality written up as a change log — the plan should look different by then, and that is the point.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span><b>Independent proposal</b> prepared for the Glovo Partner Revenue team · Not an official Glovo document · Public figures as of October 2026; market scores illustrative.</span>
+  </div>
+</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+// ---------- storage helpers ----------
+const S={get(k){try{const v=localStorage.getItem("glovo-kit:"+k);return v?JSON.parse(v):null}catch(e){return null}},
+ set(k,v){try{localStorage.setItem("glovo-kit:"+k,JSON.stringify(v))}catch(e){}},
+ del(k){try{localStorage.removeItem("glovo-kit:"+k)}catch(e){}}};
+const toastEl=document.getElementById("toast");let tt;
+function toast(m){toastEl.textContent=m;toastEl.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>toastEl.classList.remove("show"),1600)}
+
+// ---------- market data ----------
+const DEFAULT_MARKETS=[
+  ["Spain","ssw",5,5,5,5,3,5,1,"Birthplace and largest ad market; highest transition risk, so launched hand-over-ready."],
+  ["Italy","uber",5,4,5,5,2,1,1,"Mature, Uber-retained anchor; keeps Lane B level with Lane A from day one."],
+  ["Poland","ssw",4,5,4,4,2,4,1,"Named key growth market with the new formats already announced locally."],
+  ["Portugal","ssw",4,4,4,4,2,4,1,"Shares infrastructure and agencies with Spain; low marginal effort."],
+  ["Romania","ssw",4,4,3,4,2,4,1,"Strong CEE base; SSW-bound, so documented for hand-over."],
+  ["Ukraine","uber",4,4,3,4,2,2,2,"Top-5 market historically; profitable; regional hub for Caucasus/Central Asia."],
+  ["Morocco","uber",3,4,3,4,2,1,2,"First African market; most mature African ad base."],
+  ["Kazakhstan","uber",3,4,3,3,2,1,2,"Largest Central Asian market; served from the Ukraine hub."],
+  ["Nigeria","uber",3,5,3,3,3,1,2,"Fastest-growing market; Q-commerce surging; Partner Ads self-serve is the lever."],
+  ["Kenya","uber",3,4,3,3,2,1,2,"Established Glovo Ads market with FMCG adopters; strong mobile-money infrastructure."],
+  ["Bulgaria","uber",3,3,3,3,2,1,2,"EU regulatory base similar to Romania; moderate advertiser depth."],
+  ["Croatia","uber",3,3,2,3,2,1,2,"EU market, tourism-driven seasonality favours video stories."],
+  ["Georgia","uber",3,3,2,3,1,1,2,"Low friction; good test bed for segmentation on smaller data volumes."],
+  ["Serbia","uber",2,3,2,3,2,1,3,"Balkan cluster; launched with the core three formats."],
+  ["Tunisia","uber",2,3,2,3,3,1,3,"Smaller advertiser base; follows Morocco playbook."],
+  ["Armenia","uber",2,3,2,2,1,1,3,"Newest Caucasus market; core three first."],
+  ["Kyrgyzstan","uber",2,3,2,2,1,1,3,"Small; served from the Kazakhstan setup."],
+  ["Montenegro","uber",2,2,1,2,2,1,3,"Smallest Balkan market; bundled with Serbia."],
+  ["Moldova","ssw",2,2,1,2,2,3,3,"SSW-bound but small; bundled with Romania for hand-over."],
+  ["Uganda","uber",2,3,2,2,2,1,3,"Follows Kenya; self-serve first."],
+  ["Côte d'Ivoire","uber",2,3,2,2,2,1,3,"Francophone Africa; follows Morocco creative kit."]
+];
+const KEYS=["ad","qc","adv","ops","reg","risk","wave"];
+function fromRows(rows){return rows.map(m=>({name:m[0],lane:m[1],ad:m[2],qc:m[3],adv:m[4],ops:m[5],reg:m[6],risk:m[7],wave:m[8],why:m[9]}))}
+let markets=fromRows(DEFAULT_MARKETS);
+(function load(){const sv=S.get("markets");if(sv&&sv.length===markets.length){markets.forEach((m,i)=>KEYS.forEach(k=>m[k]=sv[i][k]))}})();
+const sc=m=>m.ad+m.qc+m.adv+m.ops-m.reg;
+let filter="all",sortKey="score",sortDir=-1;
+const tbody=document.querySelector("#mkt tbody");
+const numIn=(m,k,max)=>`<input class="n" type="number" min="1" max="${max}" value="${m[k]}" data-m="${m.name}" data-k="${k}">`;
+function render(){
+  let rows=markets.filter(m=>filter==="all"||m.lane===filter||String(m.wave)===filter);
+  rows.sort((a,b)=>{const x=a[sortKey]??sc(a),y=b[sortKey]??sc(b);if(typeof x==="string")return x.localeCompare(y)*sortDir;return (x-y)*sortDir;});
+  tbody.innerHTML=rows.map(m=>`<tr>
+    <td><b>${m.name}</b></td>
+    <td><span class="tag ${m.lane}">${m.lane==="ssw"?"SSW":"Uber"}</span></td>
+    <td>${numIn(m,"ad",5)}</td><td>${numIn(m,"qc",5)}</td><td>${numIn(m,"adv",5)}</td><td>${numIn(m,"ops",5)}</td><td>${numIn(m,"reg",5)}</td>
+    <td class="score">${sc(m)}</td>
+    <td>${numIn(m,"risk",5)}</td>
+    <td><select class="s" data-m="${m.name}" data-k="wave">${[1,2,3].map(w=>`<option value="${w}" ${m.wave===w?"selected":""}>Wave ${w}</option>`).join("")}</select></td>
+    <td class="note" style="min-width:220px">${m.why}</td>
+  </tr>`).join("");
+  document.querySelectorAll("#mkt th").forEach(th=>th.classList.toggle("sorted",th.dataset.k===sortKey));
+  document.querySelectorAll(".tools [data-f]").forEach(b=>b.classList.toggle("on",b.dataset.f===filter));
+  const c={1:0,2:0,3:0},l={ssw:0,uber:0};markets.forEach(m=>{c[m.wave]++;l[m.lane]++});
+  document.getElementById("waveSum").innerHTML=`<span>Wave 1: <b>${c[1]}</b></span><span>Wave 2: <b>${c[2]}</b></span><span>Wave 3: <b>${c[3]}</b></span><span>Avg readiness: <b>${(markets.reduce((a,m)=>a+sc(m),0)/markets.length).toFixed(1)}</b></span><span>SSW lane: <b>${l.ssw}</b> · Uber lane: <b>${l.uber}</b></span>`;
+}
+markets.forEach(m=>Object.defineProperty(m,"score",{get(){return sc(this)}}));
+tbody.addEventListener("change",e=>{
+  const el=e.target;if(!el.dataset.k)return;const m=markets.find(x=>x.name===el.dataset.m);
+  let v=parseInt(el.value,10);if(isNaN(v))v=1;const max=el.dataset.k==="wave"?3:5;v=Math.max(1,Math.min(max,v));m[el.dataset.k]=v;
+  S.set("markets",markets.map(x=>Object.fromEntries(KEYS.map(k=>[k,x[k]]))));render();
+});
+document.querySelectorAll("#mkt th[data-k]").forEach(th=>th.addEventListener("click",()=>{
+  if(sortKey===th.dataset.k)sortDir*=-1;else{sortKey=th.dataset.k;sortDir=["name","lane","wave"].includes(th.dataset.k)?1:-1;}render();}));
+document.querySelectorAll(".tools [data-f]").forEach(b=>b.addEventListener("click",()=>{filter=b.dataset.f;render();}));
+document.getElementById("autoWave").addEventListener("click",()=>{
+  markets.forEach(m=>{const s=sc(m);let w=s>=14?1:s>=10?2:3;if(m.risk>=4&&s<17&&w<3)w++;m.wave=w;});
+  S.set("markets",markets.map(x=>Object.fromEntries(KEYS.map(k=>[k,x[k]]))));render();toast("Waves re-assigned from readiness + risk");
+});
+function resetMkt(quiet){markets=fromRows(DEFAULT_MARKETS);markets.forEach(m=>Object.defineProperty(m,"score",{get(){return sc(this)}}));S.del("markets");render();if(!quiet)toast("Scores reset to defaults")}
+document.getElementById("resetMkt").addEventListener("click",()=>resetMkt());
+render();
+
+// ---------- gantt ----------
+const DEFAULT_WS=[
+  ["Product config",[1,2,3,4,5,6,7],"y"],
+  ["Legal & compliance",[1,2,3,4,5,6],"y"],
+  ["Design & localisation",[2,3,4,5,6,7,8],"y"],
+  ["Finance: pricing & billing",[2,3,4,5,6],"y"],
+  ["Data & reporting pipeline",[3,4,5,6,7,8,9],"y"],
+  ["Commercial enablement",[5,6,7,8,9,10],"y"],
+  ["Local market ownership",[6,7,8,9,10,11,12],"g"],
+  ["Launch & hypercare",[10,11,12],"d"],
+];
+const gates={2:"G1",5:"G2",8:"G3",10:"G4"};
+let ws=JSON.parse(JSON.stringify(DEFAULT_WS));
+(function(){const sv=S.get("gantt");if(sv&&sv.length===ws.length)ws.forEach((r,i)=>r[1]=sv[i])})();
+const g=document.getElementById("gantt");
+function renderG(){
+  let h=`<div class="hd"></div>`;for(let w=1;w<=12;w++)h+=`<div class="hd">Wk ${w}${gates[w]?"<br>"+gates[w]:""}</div>`;
+  ws.forEach((r,ri)=>{h+=`<div class="lab">${r[0]}</div>`;for(let w=1;w<=12;w++){h+=`<div class="cell ${r[1].includes(w)?"on "+r[2]:""}" data-r="${ri}" data-w="${w}"></div>`;}});
+  h+=`<div class="lab">Gate reviews</div>`;for(let w=1;w<=12;w++)h+=`<div class="cell ${gates[w]?"ms":""}"></div>`;
+  g.innerHTML=h;
+}
+g.addEventListener("click",e=>{const c=e.target;if(!c.dataset.r)return;const r=ws[+c.dataset.r],w=+c.dataset.w;const i=r[1].indexOf(w);if(i>=0)r[1].splice(i,1);else r[1].push(w);S.set("gantt",ws.map(x=>x[1]));renderG();});
+function resetG(q){ws=JSON.parse(JSON.stringify(DEFAULT_WS));S.del("gantt");renderG();if(!q)toast("Timeline reset")}
+document.getElementById("resetGantt").addEventListener("click",()=>resetG());
+renderG();
+
+// ---------- checklist ----------
+const items=[...document.querySelectorAll("#checklist li")],prog=document.getElementById("prog");
+(function(){const sv=S.get("check")||[];sv.forEach(i=>items[i]&&items[i].classList.add("done"))})();
+function upd(){const d=items.filter(i=>i.classList.contains("done"));prog.style.width=(d.length/items.length*100)+"%";S.set("check",d.map(i=>items.indexOf(i)))}
+items.forEach(i=>i.addEventListener("click",()=>{i.classList.toggle("done");upd();}));
+function resetCheck(q){items.forEach(i=>i.classList.remove("done"));S.del("check");upd();if(!q)toast("Checklist cleared")}
+document.getElementById("resetCheck").addEventListener("click",()=>resetCheck());
+upd();
+
+// ---------- exec one-pager ----------
+const DEFAULT_KV=[
+  ["Markets at G3+","5 / 5",""],["Markets on track for G4","3 / 5","a"],["Reference advertisers signed","13 / 15",""],
+  ["Formats live (soft) across wave","14 / 20",""],["Pilot ROAS, direct links (ES)","6.1×",""],["Pilot ROAS, cross-sell (IT)","7.4×",""],
+  ["Open blockers > 5 days","2","a"],["Carve-out dependencies unresolved","1","r"]
+];
+const exec=document.getElementById("exec"),kv=document.getElementById("kv"),rag=document.getElementById("rag");
+const execText=[...exec.querySelectorAll("[contenteditable]")];
+const DEFAULT_TEXT=Object.fromEntries(execText.map(el=>[el.dataset.key,el.innerHTML]));
+function renderKV(vals){kv.innerHTML=vals.map((r,i)=>`<span class="k">${r[0]}</span><span style="display:flex;align-items:center;gap:6px;justify-content:flex-end"><input class="v" data-i="${i}" value="${r[1]}"><select class="s" data-i="${i}" data-rag><option value="" ${r[2]===""?"selected":""}>—</option><option value="g" ${r[2]==="g"?"selected":""}>G</option><option value="a" ${r[2]==="a"?"selected":""}>A</option><option value="r" ${r[2]==="r"?"selected":""}>R</option></select></span>`).join("")}
+let kvVals=JSON.parse(JSON.stringify(DEFAULT_KV));
+(function(){const sv=S.get("exec");if(sv){if(sv.kv)kvVals=sv.kv;if(sv.text)execText.forEach(el=>{if(sv.text[el.dataset.key]!=null)el.innerHTML=sv.text[el.dataset.key]});if(sv.rag)rag.value=sv.rag}})();
+function saveExec(){S.set("exec",{kv:kvVals,text:Object.fromEntries(execText.map(el=>[el.dataset.key,el.innerHTML])),rag:rag.value})}
+kv.addEventListener("input",e=>{const i=+e.target.dataset.i;if(e.target.hasAttribute("data-rag"))kvVals[i][2]=e.target.value;else kvVals[i][1]=e.target.value;saveExec();});
+execText.forEach(el=>el.addEventListener("input",saveExec));
+rag.addEventListener("change",saveExec);
+function resetExec(q){kvVals=JSON.parse(JSON.stringify(DEFAULT_KV));execText.forEach(el=>el.innerHTML=DEFAULT_TEXT[el.dataset.key]);rag.value="a";S.del("exec");renderKV(kvVals);if(!q)toast("One-pager reset to sample")}
+document.getElementById("resetExec").addEventListener("click",()=>resetExec());
+renderKV(kvVals);
+
+// ---------- reset all ----------
+document.getElementById("resetAll").addEventListener("click",()=>{resetMkt(1);resetG(1);resetCheck(1);resetExec(1);toast("Everything reset to defaults")});
+</script>
+</body>
+</html>
