@@ -198,53 +198,24 @@ tr:last-child td{border-bottom:none}
 .phase .p ul{padding-left:16px;font-size:.85rem;color:var(--ink-2);margin-top:8px}
 
 
-/* exec summary */
-.summ{background:var(--ink);color:#fff;padding:48px 0}
-.summ .eyebrow{color:var(--yellow);margin-bottom:6px}.summ .eyebrow::before{background:var(--green)}
-.summ h2{color:#fff;font-size:clamp(1.4rem,2.6vw,1.9rem);margin-bottom:6px}
-.summ .sub{color:#BDBDBD;font-size:.92rem;max-width:760px}
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0 14px}
-.kpi{background:#2A2A2A;border-radius:14px;padding:14px 16px}
-.kpi .v{font-size:1.7rem;font-weight:800;color:var(--yellow);line-height:1}
-.kpi .l{font-size:.76rem;color:#BDBDBD;margin-top:6px;line-height:1.35}
-.charts{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:12px}
-.chart{background:#2A2A2A;border-radius:14px;padding:14px 16px}
-.chart h4{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#BDBDBD;margin-bottom:12px;font-weight:800}
-.hb{display:grid;grid-template-columns:96px 1fr 42px;gap:8px;align-items:center;font-size:.78rem;margin-bottom:8px;color:#D6D6D6}
-.hb .t{height:12px;background:#3A3A3A;border-radius:6px;overflow:hidden}
-.hb .t span{display:block;height:100%;border-radius:6px;background:#8A8A8A}
-.hb.on .t span{background:var(--yellow)}
-.hb .n{font-weight:800;text-align:right;color:#fff}
-.vb{display:flex;align-items:flex-end;gap:10px;height:110px;padding-top:6px;border-bottom:1px solid #444}
-.vb .c{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
-.vb .c i{display:block;width:100%;max-width:34px;background:var(--green);border-radius:6px 6px 0 0}
-.vb .c.tg i{background:transparent;border:2px dashed var(--yellow);border-bottom:none}
-.vb .c b{font-size:.74rem;color:#fff;margin-bottom:4px}
-.vb-l{display:flex;gap:10px;font-size:.68rem;color:#9A9A9A;margin-top:5px}
-.vb-l span{flex:1;text-align:center}
-.wv{display:grid;grid-template-columns:78px repeat(28,1fr);gap:0;align-items:center;font-size:.72rem;color:#D6D6D6;row-gap:7px}
-.wv .bar{height:22px;border-radius:5px;display:flex;align-items:center;padding-left:8px;font-size:.68rem;font-weight:800;color:#1F1F1F;white-space:nowrap}
-.wv .w1{background:#EDE9DD}.wv .w2{background:#CFC9B9}.wv .w3{background:#B3AD9C}
-.wv-ax{display:flex;justify-content:space-between;font-size:.66rem;color:#9A9A9A;margin:6px 0 0 78px}
-.split{display:flex;height:12px;border-radius:6px;overflow:hidden;margin-top:12px}
-.split .u{background:var(--green)}.split .s{background:var(--yellow)}
-.split-l{display:flex;justify-content:space-between;font-size:.7rem;color:#BDBDBD;margin-top:5px}
-.asks{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:12px;margin-top:12px}
-.ask{border-radius:14px;padding:14px 16px;font-size:.82rem}
-.ask h4{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;font-weight:800}
-.ask ul{padding-left:16px}.ask li{margin-bottom:4px;line-height:1.4}
-.ask.k{background:#2A2A2A;color:#D6D6D6}.ask.k h4{color:var(--yellow)}
-.ask.g{background:var(--green);color:#fff}
-.ask.y{background:var(--yellow);color:var(--ink)}
-.summ .fine{font-size:.72rem;color:#8A8A8A;margin-top:10px}
-@media (max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}.charts,.asks{grid-template-columns:1fr}}
-
 /* wave overlap strip */
 .ov{display:grid;grid-template-columns:110px repeat(28,1fr);row-gap:8px;align-items:center;font-size:.8rem;margin-top:6px}
 .ov .lb{font-weight:800;grid-column:1}
 .ov .b{height:30px;border-radius:8px;display:flex;align-items:center;padding-left:10px;font-weight:800;font-size:.74rem;color:#fff;white-space:nowrap}
 .ov .o{height:30px;border-radius:8px;border:2px dashed var(--ink);background:var(--yellow-soft);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.72rem;white-space:nowrap}
 .ov-ax{display:grid;grid-template-columns:110px repeat(28,1fr);font-size:.7rem;color:var(--muted);margin-top:6px}
+
+/* key terms */
+.terms-tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:18px 0 6px}
+.terms-tools input{font-family:inherit;font-size:.95rem;padding:10px 16px;border:2px solid var(--line);border-radius:999px;min-width:280px;flex:1;max-width:420px}
+.terms-tools input:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px var(--green-soft)}
+.tgroup{margin-top:22px}
+.tgroup h3{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin-bottom:10px}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.term{background:#fff;border:2px solid var(--line);border-radius:14px;padding:12px 14px}
+.term b{display:block;font-size:.92rem;margin-bottom:3px}
+.term span{font-size:.84rem;color:var(--ink-2);line-height:1.45;display:block}
+.term.hide,.tgroup.hide{display:none}
 
 footer{background:var(--ink);color:#BDBDBD;padding:44px 0;font-size:.82rem}
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center}
@@ -268,7 +239,7 @@ footer b{color:var(--yellow)}
   <div class="wrap">
     <div class="brand">Glovo <small>· Ads Launch Kit</small></div>
     <ul>
-      <li><a href="#summary">Summary</a></li>
+      <li><a href="#terms">Key terms</a></li>
       <li><a href="#context">Context</a></li>
       <li><a href="#scope">Scope</a></li>
       <li><a href="#tiering">Tiering</a></li>
@@ -302,77 +273,74 @@ footer b{color:var(--yellow)}
   </div>
 </header>
 
-<!-- EXEC SUMMARY -->
-<section id="summary" class="summ">
+<!-- KEY TERMS -->
+<section id="terms" class="alt">
   <div class="wrap">
-    <span class="eyebrow">Leadership summary</span>
-    <h2>Four formats, 21 markets, 28 weeks — launched through the carve-out</h2>
-    <p class="sub">Ads is the fastest-growing, highest-margin line in Europe. This plan gets the 2026 formats live everywhere before close, without either ownership lane waiting on the other.</p>
-
-    <div class="kpis">
-      <div class="kpi"><div class="v">+32%</div><div class="l">Europe AdTech revenue YoY, Q2 2026 — about 4× GMV growth</div></div>
-      <div class="kpi"><div class="v">3% → 4%+</div><div class="l">AdTech as % of GMV, today vs Group long-term target</div></div>
-      <div class="kpi"><div class="v">21 · 3</div><div class="l">Markets in three 12-week waves (5 / 8 / 8)</div></div>
-      <div class="kpi"><div class="v">~28 wks</div><div class="l">End to end, inside the ~12-month expected pre-close window</div></div>
-    </div>
-
-    <div class="charts">
-      <div class="chart">
-        <h4>Europe growth YoY, Q2 2026</h4>
-        <div class="hb"><span>GMV</span><div class="t"><span style="width:26%"></span></div><span class="n">8.4%</span></div>
-        <div class="hb"><span>Quick Commerce</span><div class="t"><span style="width:59%"></span></div><span class="n">19%</span></div>
-        <div class="hb on"><span>AdTech</span><div class="t"><span style="width:100%"></span></div><span class="n">32%</span></div>
-        <p class="fine" style="margin-top:6px">Every point of AdTech penetration is high-margin revenue.</p>
-      </div>
-      <div class="chart">
-        <h4>Group AdTech as % of GMV</h4>
-        <div class="vb">
-          <div class="c"><b>1.3%</b><i style="height:30%"></i></div>
-          <div class="c"><b>2.0%</b><i style="height:46%"></i></div>
-          <div class="c"><b>2.5%</b><i style="height:58%"></i></div>
-          <div class="c"><b>3.0%</b><i style="height:70%"></i></div>
-          <div class="c tg"><b>4%+</b><i style="height:93%"></i></div>
-        </div>
-        <div class="vb-l"><span>FY22</span><span>FY23</span><span>FY24</span><span>FY25</span><span>Target</span></div>
-      </div>
-      <div class="chart">
-        <h4>Launch waves (weeks) and ownership split</h4>
-        <div class="wv"><span style="grid-row:1;grid-column:1;white-space:nowrap">Wave 1 · 5</span><div class="bar w1" style="grid-row:1;grid-column:2/14">Wk 1–12</div><span style="grid-row:2;grid-column:1;white-space:nowrap">Wave 2 · 8</span><div class="bar w2" style="grid-row:2;grid-column:10/22">Wk 9–20</div><span style="grid-row:3;grid-column:1;white-space:nowrap">Wave 3 · 8</span><div class="bar w3" style="grid-row:3;grid-column:18/30">Wk 17–28</div>
-        </div>
-        <div class="wv-ax"><span>Wk 1</span><span>Wk 9</span><span>Wk 17</span><span>Wk 28</span></div>
-        <div class="split"><div class="u" style="width:76%"></div><div class="s" style="width:24%"></div></div>
-        <div class="split-l"><span>16 Uber-retained markets</span><span>5 SSW markets</span></div>
-      </div>
-    </div>
-
-    <div class="asks">
-      <div class="ask k">
-        <h4>The plan in four lines</h4>
-        <ul>
-          <li>Launch the four formats as one bundle per market — ~4× fewer Legal / Finance cycles.</li>
-          <li>Wave 1 = ES, IT, PL, PT, RO: revenue first, built hand-over-ready.</li>
-          <li>"Launched" = live, bookable, billable, measured, enabled. Anything less is soft-live.</li>
-          <li>One north star, one exec page every two weeks.</li>
-        </ul>
-      </div>
-      <div class="ask g">
-        <h4>Decisions needed</h4>
-        <ul>
-          <li>Confirm the four formats and their order.</li>
-          <li>Lane A first, Italy in Wave 1.</li>
-          <li>Finish Wave 3 before close.</li>
-        </ul>
-      </div>
-      <div class="ask y">
-        <h4>Top risks</h4>
-        <ul>
-          <li>Segmentation blocked by Legal in SSW markets.</li>
-          <li>Cross-lane brand contracts need re-papering.</li>
-          <li>Thin local enablement in Waves 2–3.</li>
-        </ul>
-      </div>
-    </div>
-    <p class="fine">Growth and AdTech figures: Delivery Hero Q2 2026 results and May 2026 company presentation. Wave timing and market scores are proposals, editable below.</p>
+    <span class="eyebrow">Kit key</span>
+    <h2>Key terms used in this kit</h2>
+    <p class="lede">Plain-language definitions of the words used across the kit, grouped by topic. Type to search.</p>
+    <div class="terms-tools"><input id="termSearch" type="search" placeholder="Search a term, e.g. ROAS, gate, carve-out" aria-label="Search key terms"><span class="note" id="termCount"></span></div>
+    <div class="tgroup"><h3>Business &amp; money</h3><div class="tgrid">
+      <div class="term"><b>Glovo Ads</b><span>Glovo&#x27;s advertising business. Brands, restaurants and shops pay to promote their products inside the Glovo app.</span></div>
+      <div class="term"><b>The four formats</b><span>The new ad types announced at Glovo&#x27;s Retail Media Day in May 2026: audience segmentation, direct product links, video stories and product cross-sell. They are what this plan launches.</span></div>
+      <div class="term"><b>AdTech</b><span>Delivery Hero&#x27;s name for all its advertising revenue: ads bought by restaurants, local shops and big brands.</span></div>
+      <div class="term"><b>GMV</b><span>Gross merchandise value: the total value of all orders placed on the platform.</span></div>
+      <div class="term"><b>AdTech as % of GMV</b><span>Ad revenue divided by order value. The Group is at 3% and aims for more than 4%. It is this plan&#x27;s main success measure.</span></div>
+      <div class="term"><b>North star</b><span>The one main number a team is judged on. Here: AdTech as % of GMV.</span></div>
+      <div class="term"><b>ROAS</b><span>Return on ad spend: sales an ad brings in divided by what it cost. 6× means €6 of sales for every €1 spent.</span></div>
+      <div class="term"><b>Quick Commerce</b><span>Fast delivery of groceries and other shop items, not only restaurant food.</span></div>
+      <div class="term"><b>LfL (like-for-like)</b><span>Growth measured on a comparable basis, removing currency swings and changes in the business mix.</span></div>
+      <div class="term"><b>FMCG</b><span>Fast-moving consumer goods: everyday branded products such as drinks, snacks and toiletries. The biggest ad buyers.</span></div>
+      <div class="term"><b>Brand Ads</b><span>Ads bought by big brands and their media agencies, usually through Brands Ads Manager.</span></div>
+      <div class="term"><b>Partner Ads</b><span>Ads that restaurants and shops on Glovo buy for themselves, usually through a self-serve tool with any budget.</span></div>
+      <div class="term"><b>Brands Ads Manager</b><span>Glovo&#x27;s platform for brands and agencies to plan, buy and track campaigns.</span></div>
+      <div class="term"><b>Self-serve</b><span>Advertisers set up and pay for ads themselves, without a Glovo salesperson.</span></div>
+      <div class="term"><b>Fill rate &amp; CPM</b><span>Fill rate: share of available ad space that is sold. CPM: price paid per 1,000 times an ad is shown.</span></div>
+    </div></div>
+    <div class="tgroup"><h3>The deal</h3><div class="tgrid">
+      <div class="term"><b>Uber deal</b><span>Uber&#x27;s ~€13bn offer (July 2026) to buy Delivery Hero, which owns Glovo.</span></div>
+      <div class="term"><b>Carve-out</b><span>Separating part of a business so it can be sold or run on its own. Here: five Glovo markets are being split off and sold to SSW Partners so regulators approve the Uber deal.</span></div>
+      <div class="term"><b>SSW Partners</b><span>A New York investment firm buying Glovo&#x27;s business in Spain, Portugal, Poland, Romania and Moldova.</span></div>
+      <div class="term"><b>SSW markets (Lane A)</b><span>The 5 markets moving to SSW Partners.</span></div>
+      <div class="term"><b>Uber markets (Lane B)</b><span>The 16 markets staying with Uber: Italy, Ukraine, the Balkans, the Caucasus, Central Asia and six African markets.</span></div>
+      <div class="term"><b>Lane</b><span>This kit&#x27;s label for each of the two groups of markets. Both follow one plan, side by side, heading to different owners.</span></div>
+      <div class="term"><b>Close</b><span>The date the deal is completed. Expected around a year after the July 2026 announcement.</span></div>
+      <div class="term"><b>Transition (TSA)</b><span>The period around close when shared systems keep running for both owners while they are separated. TSA = transitional services agreement.</span></div>
+      <div class="term"><b>Hand-over-ready</b><span>A launch documented well enough, with nothing only HQ can run, that a new owner can take it over without disruption.</span></div>
+    </div></div>
+    <div class="tgroup"><h3>The launch plan</h3><div class="tgrid">
+      <div class="term"><b>Wave</b><span>A group of markets that launch together over 12 weeks. Three waves: 5, 8 and 8 markets.</span></div>
+      <div class="term"><b>Overlap</b><span>The next wave starts in week 9 of the previous one, so waves share 4 weeks. 28 weeks in total instead of 36.</span></div>
+      <div class="term"><b>Bundle</b><span>All four formats launched together in a market, instead of one at a time.</span></div>
+      <div class="term"><b>Workstream</b><span>One team&#x27;s stream of work in a launch, such as Legal, Finance or Design.</span></div>
+      <div class="term"><b>Gate (G1–G4)</b><span>A checkpoint the launch must pass before moving on. G1 scope lock (week 2), G2 build ready (week 5), G3 market ready (week 8), G4 go / no-go (week 10).</span></div>
+      <div class="term"><b>Gate review</b><span>The short meeting at each gate where the teams check the list and decide: go on, fix first, or delay.</span></div>
+      <div class="term"><b>Go / no-go</b><span>The final decision at G4 on whether a market goes live.</span></div>
+      <div class="term"><b>Hypercare</b><span>The first two weeks after go-live, when the team watches closely and fixes problems fast.</span></div>
+      <div class="term"><b>Launched</b><span>A format counts as launched only when it is live for all users, bookable, billable in local currency, measured on a real campaign, and the local team is trained.</span></div>
+      <div class="term"><b>Soft-live</b><span>Switched on but not meeting all five launch conditions. Never reported as done.</span></div>
+      <div class="term"><b>Reference advertiser</b><span>One of the first advertisers in a market whose campaign proves the format works.</span></div>
+      <div class="term"><b>Enablement</b><span>Training and materials that prepare local sales teams to sell the new formats.</span></div>
+      <div class="term"><b>Localisation</b><span>Adapting ads, guidelines and materials to each market&#x27;s language and rules.</span></div>
+      <div class="term"><b>RACI</b><span>Who does what: Responsible (does it), Accountable (owns the result), Consulted (gives input), Informed (kept updated).</span></div>
+    </div></div>
+    <div class="tgroup"><h3>Scoring the markets</h3><div class="tgrid">
+      <div class="term"><b>Readiness score</b><span>How ready a market is to launch: ad maturity + Q-commerce + advertiser depth + ops readiness − regulatory friction. Maximum 19.</span></div>
+      <div class="term"><b>Ad maturity</b><span>How established Glovo&#x27;s ad business already is in that market: advertisers, tools and a local ads team.</span></div>
+      <div class="term"><b>Q-commerce momentum</b><span>How strong and fast-growing grocery and shop delivery is there. Cross-sell and targeting need it.</span></div>
+      <div class="term"><b>Advertiser depth</b><span>How many potential ad buyers exist: big brands, FMCG companies and media agencies.</span></div>
+      <div class="term"><b>Ops readiness</b><span>Whether the local team has the people and time to run a launch.</span></div>
+      <div class="term"><b>Regulatory friction</b><span>How much local law slows ad launches: privacy and consent, ad labelling, restricted products, data rules. Subtracted from readiness.</span></div>
+      <div class="term"><b>Transition risk</b><span>How exposed a market&#x27;s ad business is to the Uber / SSW split, from 1 (little changes) to 5 (a lot to untangle). Decides how much hand-over work a launch needs, not its wave.</span></div>
+      <div class="term"><b>Auto-assign</b><span>Button that sets waves from the scores: 14+ → Wave 1, 10+ → Wave 2, otherwise Wave 3; SSW markets scoring 13+ move to Wave 1.</span></div>
+    </div></div>
+    <div class="tgroup"><h3>Reporting</h3><div class="tgrid">
+      <div class="term"><b>Executive one-pager</b><span>A fixed one-page update every two weeks: headline, decisions needed, top risks, scorecard.</span></div>
+      <div class="term"><b>RAG</b><span>Red / Amber / Green status. Green on track, Amber at risk, Red off track or blocked.</span></div>
+      <div class="term"><b>RAID log</b><span>A running list of Risks, Assumptions, Issues and Dependencies.</span></div>
+      <div class="term"><b>Guardrails</b><span>Limits that protect users: how many ads they see, click rates, complaints. A launch that earns more but breaks these is flagged red.</span></div>
+      <div class="term"><b>Blocker</b><span>Something stopping work from moving forward until someone acts.</span></div>
+    </div></div>
   </div>
 </section>
 
@@ -819,6 +787,13 @@ rag.addEventListener("change",saveExec);
 function resetExec(q){kvVals=JSON.parse(JSON.stringify(DEFAULT_KV));execText.forEach(el=>el.innerHTML=DEFAULT_TEXT[el.dataset.key]);rag.value="a";S.del("exec");renderKV(kvVals);if(!q)toast("One-pager reset to sample")}
 document.getElementById("resetExec").addEventListener("click",()=>resetExec());
 renderKV(kvVals);
+
+// ---------- key terms search ----------
+(function(){const q=document.getElementById("termSearch"),cnt=document.getElementById("termCount");if(!q)return;
+const terms=[...document.querySelectorAll(".term")],groups=[...document.querySelectorAll(".tgroup")];
+function f(){const v=q.value.trim().toLowerCase();let n=0;terms.forEach(t=>{const hit=!v||t.textContent.toLowerCase().includes(v);t.classList.toggle("hide",!hit);if(hit)n++;});
+groups.forEach(g=>g.classList.toggle("hide",!g.querySelector(".term:not(.hide)")));cnt.textContent=v?n+" of "+terms.length+" terms":terms.length+" terms";}
+q.addEventListener("input",f);f();})();
 
 // ---------- reset all ----------
 document.getElementById("resetAll").addEventListener("click",()=>{resetMkt(1);resetG(1);resetCheck(1);resetExec(1);toast("Everything reset to defaults")});
