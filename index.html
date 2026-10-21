@@ -197,6 +197,31 @@ tr:last-child td{border-bottom:none}
 .phase .p .when{font-size:.74rem;font-weight:800;color:var(--green);letter-spacing:.08em;text-transform:uppercase}
 .phase .p ul{padding-left:16px;font-size:.85rem;color:var(--ink-2);margin-top:8px}
 
+
+/* exec summary */
+.summ{background:var(--ink);color:#fff;padding:64px 0}
+.summ .eyebrow{color:var(--yellow)}.summ .eyebrow::before{background:var(--green)}
+.summ h2{color:#fff}
+.summ .lede{color:#D6D6D6}
+.summ-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;margin-top:28px}
+.summ-list{counter-reset:n;list-style:none;display:grid;gap:12px}
+.summ-list li{counter-increment:n;display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start;background:#2A2A2A;border-radius:16px;padding:16px 18px}
+.summ-list li::before{content:counter(n);width:44px;height:44px;border-radius:12px;background:var(--yellow);color:var(--ink);font-weight:800;font-size:1.2rem;display:grid;place-items:center}
+.summ-list b{display:block;color:var(--yellow);margin-bottom:3px}
+.summ-list p{color:#D6D6D6;font-size:.9rem}
+.summ-side{display:grid;gap:14px;align-content:start}
+.summ-box{border-radius:16px;padding:18px 20px}
+.summ-box.g{background:var(--green)}
+.summ-box.y{background:var(--yellow);color:var(--ink)}
+.summ-box h3{margin-bottom:8px}
+.summ-box.g h3,.summ-box.g p{color:#fff}
+.summ-box.y p{color:var(--ink)}
+.summ-box ul{padding-left:18px;font-size:.9rem}
+.summ-box.g ul{color:#fff}
+.summ-box.y ul{color:var(--ink)}
+.summ-box li{margin-bottom:5px}
+@media (max-width:860px){.summ-grid{grid-template-columns:1fr}}
+
 footer{background:var(--ink);color:#BDBDBD;padding:44px 0;font-size:.82rem}
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center}
 footer b{color:var(--yellow)}
@@ -219,6 +244,7 @@ footer b{color:var(--yellow)}
   <div class="wrap">
     <div class="brand">Glovo <small>· Ads Launch Kit</small></div>
     <ul>
+      <li><a href="#summary">Summary</a></li>
       <li><a href="#context">Context</a></li>
       <li><a href="#scope">Scope</a></li>
       <li><a href="#tiering">Tiering</a></li>
@@ -251,6 +277,43 @@ footer b{color:var(--yellow)}
     </div>
   </div>
 </header>
+
+<!-- EXEC SUMMARY -->
+<section id="summary" class="summ">
+  <div class="wrap">
+    <span class="eyebrow">Executive summary</span>
+    <h2>Five things leadership needs to know</h2>
+    <p class="lede">Read this and the executive one-pager template, and you have the whole proposal. Everything else is the working detail behind it.</p>
+    <div class="summ-grid">
+      <ol class="summ-list">
+        <li><b>Ads is the margin story, and launch speed is the lever.</b><p>Europe AdTech grew 32% YoY in Q2 2026 against 8% GMV. The Group is at 3% AdTech-to-GMV targeting >4%. Every market where the four new formats are live and bookable moves that ratio; every market where they are "soft-live" does not.</p></li>
+        <li><b>21 markets in three 12-week waves, roughly 28 weeks end to end.</b><p>Wave 1: Spain, Italy, Poland, Portugal, Romania. Wave 2: eight Uber-retained growth markets led by Ukraine, Morocco, Nigeria, Kenya. Wave 3: the eight smallest with a lighter bundle. The whole programme fits inside the expected pre-close window.</p></li>
+        <li><b>The carve-out is managed, not ignored.</b><p>Four of five Wave 1 markets go to SSW Partners. Every Lane A launch is built hand-over-ready; Lane B never gets a second-class product. Shared roadmap until close, contracts and audiences prepared to diverge, one monthly dependency review with Legal and Finance.</p></li>
+        <li><b>One number at the top, one page every two weeks.</b><p>AdTech revenue as % of GMV is the north star because it is the number already reported to investors. Six drivers explain its movement. Executives get a fixed-format one-pager: headline, decisions needed, top risks, scorecard, nothing to scroll for.</p></li>
+        <li><b>"Launched" cannot be gamed.</b><p>A format is launched only when it is live for all users, bookable, priced in local currency, measured on a reference campaign, and the local team is enabled. Anything short of that is reported as soft-live, never as done.</p></li>
+      </ol>
+      <div class="summ-side">
+        <div class="summ-box g">
+          <h3>Three decisions needed up front</h3>
+          <ul>
+            <li>Confirm the four Retail Media Day formats are the launch scope, and their sequencing.</li>
+            <li>Approve Lane A first with Italy in Wave 1, so neither lane waits on the other.</li>
+            <li>Agree that Wave 3 completes before close, so all 21 markets launch under one playbook.</li>
+          </ul>
+        </div>
+        <div class="summ-box y">
+          <h3>Three risks to watch</h3>
+          <ul>
+            <li>Audience segmentation blocked by Legal in SSW-bound markets before cross-market audiences are ring-fenced.</li>
+            <li>Brand master agreements and agency setups spanning both lanes need re-papering at close.</li>
+            <li>Local Commercial enablement slipping in Wave 2 and 3 markets, turning launches into soft-live.</li>
+          </ul>
+        </div>
+        <p class="note" style="color:#9A9A9A">Public figures as of October 2026. Market scores and sample numbers in this kit are illustrative and editable.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- CONTEXT -->
 <section id="context">
