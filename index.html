@@ -591,32 +591,32 @@ footer b{color:var(--yellow)}
     </div>
     <div class="exec" id="exec">
       <header>
-        <h3 contenteditable="true" data-key="title">Glovo Ads 2026 Formats · Wave 1 · Fortnight 5</h3>
+        <h3 contenteditable="true" data-key="title">Glovo Ads 2026 formats · Wave 1 · Week 10 update</h3>
         <small>Overall status:
           <select class="s" id="rag" data-key="rag"><option value="g">Green</option><option value="a" selected>Amber</option><option value="r">Red</option></select>
-          <span contenteditable="true" data-key="sub">On track for G4 in ES, IT, PT · PL and RO slip 2 weeks</span>
+          <span contenteditable="true" data-key="sub">Spain, Italy, Portugal on track to go live · Poland and Romania 2 weeks late</span>
         </small>
       </header>
       <div class="body">
         <div>
           <h4>Headline</h4>
-          <p style="font-size:.9rem" contenteditable="true" data-key="headline">Three of five markets reach go/no-go on schedule. Poland and Romania slip two weeks on audience-segmentation legal review; direct links and cross-sell will go live there on time as a partial bundle. No impact to Wave 2 start.</p>
+          <p style="font-size:.9rem" contenteditable="true" data-key="headline">Three of five markets are ready to go live on schedule. Poland and Romania are two weeks late because Legal is still reviewing audience targeting. They will launch two formats on time and add the other two two weeks later. Wave 2 is not affected.</p>
           <h4>Decisions needed this fortnight</h4>
           <ul contenteditable="true" data-key="decisions">
-            <li>Approve PL/RO partial-bundle launch (links + cross-sell first, segmentation + stories at +2 wks).</li>
-            <li>Confirm billing entity for SSW-bound markets stays on the current Glovo entity through close.</li>
-            <li>Sign off video-story creative spec v1.2 so agencies can start production in Wave 2 markets.</li>
+            <li>Approve launching Poland and Romania with direct links and cross-sell first, adding audience targeting and video two weeks later.</li>
+            <li>Confirm the SSW markets keep billing through the current Glovo company until the deal closes.</li>
+            <li>Sign off the video ad guidelines so agencies can start making videos for Wave 2.</li>
           </ul>
           <h4>Top risks</h4>
           <ul contenteditable="true" data-key="risks">
-            <li>RED — Cross-market audience segments require ring-fencing before close. Owner: Legal + Data. Due wk 11.</li>
-            <li>AMBER — Two reference advertisers in RO not yet signed. Owner: Commercial. Due wk 11.</li>
+            <li>RED — Audience data shared across markets must be separated before the deal closes. Owner: Legal + Data. Due week 11.</li>
+            <li>AMBER — Two of the first advertisers in Romania have not signed yet. Owner: Commercial. Due week 11.</li>
           </ul>
         </div>
         <div>
           <h4>Scorecard</h4>
           <div class="kv" id="kv"></div>
-          <p class="note" style="margin-top:14px">Sample numbers. The template is the deliverable: headline, decisions, risks, scorecard — nothing an exec has to scroll for.</p>
+          <p class="note" style="margin-top:14px"><b>G3</b> = market ready check (week 8) · <b>G4</b> = final go / no-go (week 10). Sample numbers: the point is the format — headline, decisions, risks, scorecard, nothing to scroll for.</p>
         </div>
       </div>
     </div>
@@ -693,9 +693,9 @@ footer b{color:var(--yellow)}
 
 <script>
 // ---------- storage helpers ----------
-const S={get(k){try{const v=localStorage.getItem("glovo-kit:"+k);return v?JSON.parse(v):null}catch(e){return null}},
- set(k,v){try{localStorage.setItem("glovo-kit:"+k,JSON.stringify(v))}catch(e){}},
- del(k){try{localStorage.removeItem("glovo-kit:"+k)}catch(e){}}};
+const S={get(k){try{const v=localStorage.getItem("glovo-kit-v2:"+k);return v?JSON.parse(v):null}catch(e){return null}},
+ set(k,v){try{localStorage.setItem("glovo-kit-v2:"+k,JSON.stringify(v))}catch(e){}},
+ del(k){try{localStorage.removeItem("glovo-kit-v2:"+k)}catch(e){}}};
 const toastEl=document.getElementById("toast");let tt;
 function toast(m){toastEl.textContent=m;toastEl.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>toastEl.classList.remove("show"),1600)}
 
@@ -802,9 +802,9 @@ upd();
 
 // ---------- exec one-pager ----------
 const DEFAULT_KV=[
-  ["Markets at G3+","5 / 5",""],["Markets on track for G4","3 / 5","a"],["Reference advertisers signed","13 / 15",""],
-  ["Formats live (soft) across wave","14 / 20",""],["Pilot ROAS, direct links (ES)","6.1×",""],["Pilot ROAS, cross-sell (IT)","7.4×",""],
-  ["Open blockers > 5 days","2","a"],["Carve-out dependencies unresolved","1","r"]
+  ["Markets fully prepared (passed G3)","5 / 5","g"],["Markets on track to go live (G4)","3 / 5","a"],["First advertisers signed","13 / 15",""],
+  ["Formats switched on, not yet fully launched","14 / 20",""],["Test campaign ROAS, direct links (Spain)","6.1×",""],["Test campaign ROAS, cross-sell (Italy)","7.4×",""],
+  ["Problems stuck for more than 5 days","2","a"],["Deal-related issues not yet solved","1","r"]
 ];
 const exec=document.getElementById("exec"),kv=document.getElementById("kv"),rag=document.getElementById("rag");
 const execText=[...exec.querySelectorAll("[contenteditable]")];
