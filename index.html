@@ -239,6 +239,13 @@ tr:last-child td{border-bottom:none}
 .summ .fine{font-size:.72rem;color:#8A8A8A;margin-top:10px}
 @media (max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}.charts,.asks{grid-template-columns:1fr}}
 
+/* wave overlap strip */
+.ov{display:grid;grid-template-columns:110px repeat(28,1fr);row-gap:8px;align-items:center;font-size:.8rem;margin-top:6px}
+.ov .lb{font-weight:800;grid-column:1}
+.ov .b{height:30px;border-radius:8px;display:flex;align-items:center;padding-left:10px;font-weight:800;font-size:.74rem;color:#fff;white-space:nowrap}
+.ov .o{height:30px;border-radius:8px;border:2px dashed var(--ink);background:var(--yellow-soft);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.72rem;white-space:nowrap}
+.ov-ax{display:grid;grid-template-columns:110px repeat(28,1fr);font-size:.7rem;color:var(--muted);margin-top:6px}
+
 footer{background:var(--ink);color:#BDBDBD;padding:44px 0;font-size:.82rem}
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center}
 footer b{color:var(--yellow)}
@@ -472,7 +479,7 @@ footer b{color:var(--yellow)}
   <div class="wrap">
     <span class="eyebrow">04 · Launch playbook</span>
     <h2>One 12-week plan, reused three times</h2>
-    <p class="lede" style="margin-bottom:28px">Seven workstreams, four gates. Waves overlap by four weeks so Legal and Finance never idle and local teams get a predictable rhythm.</p>
+    <p class="lede" style="margin-bottom:28px">Every wave follows the same 12-week plan below: seven workstreams and four gate reviews. The next wave starts in week 9 of the one before it, so each pair of waves overlaps for 4 weeks — shown in the strip under the chart.</p>
 
     <div class="card" style="overflow-x:auto">
       <div class="tools" style="margin-top:0">
@@ -486,6 +493,20 @@ footer b{color:var(--yellow)}
         <span><span style="display:inline-block;width:12px;height:12px;background:var(--green);border-radius:3px;vertical-align:middle"></span> Local market ownership</span>
         <span><span style="display:inline-block;width:12px;height:12px;background:var(--ink);border-radius:3px;vertical-align:middle"></span> Launch &amp; hypercare</span>
         <span>◆ Gate review</span>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:22px;overflow-x:auto">
+      <h3>How the three waves overlap</h3>
+      <p style="margin-bottom:14px">Wave 2 starts in week 9, while Wave 1 is in its last 4 weeks (launch and hypercare, run by local teams). By then the HQ teams — Product, Legal, Finance — have finished most of their Wave 1 work, so they move on to Wave 2 instead of waiting. Wave 3 starts in week 17 the same way. Result: <b>28 weeks in total instead of 36</b> if the waves ran one after another.</p>
+      <div style="min-width:760px">
+        <div class="ov">
+          <span class="lb" style="grid-row:1">Wave 1 · 5 mkts</span><div class="b" style="grid-row:1;grid-column:2/14;background:#2E2E2E">Wk 1–12</div>
+          <span class="lb" style="grid-row:2">Wave 2 · 8 mkts</span><div class="b" style="grid-row:2;grid-column:10/22;background:#4F4F4F">Wk 9–20</div>
+          <span class="lb" style="grid-row:3">Wave 3 · 8 mkts</span><div class="b" style="grid-row:3;grid-column:18/30;background:#6E6E6E">Wk 17–28</div>
+          <span class="lb" style="grid-row:4;color:var(--muted)">Overlap</span><div class="o" style="grid-row:4;grid-column:10/14">Wk 9–12</div><div class="o" style="grid-row:4;grid-column:18/22">Wk 17–20</div>
+        </div>
+        <div class="ov-ax"><span></span><span style="grid-column:2">1</span><span style="grid-column:10">9</span><span style="grid-column:14">13</span><span style="grid-column:18">17</span><span style="grid-column:22">21</span><span style="grid-column:29;text-align:right">28</span></div>
       </div>
     </div>
 
