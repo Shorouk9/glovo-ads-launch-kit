@@ -303,7 +303,7 @@ footer b{color:var(--yellow)}
     <p class="sub">Ads is the fastest-growing, highest-margin line in Europe. This plan gets the 2026 formats live everywhere before close, without either ownership lane waiting on the other.</p>
 
     <div class="kpis">
-      <div class="kpi"><div class="v">+32%</div><div class="l">Europe AdTech revenue YoY, Q2 2026 — 4× GMV growth</div></div>
+      <div class="kpi"><div class="v">+32%</div><div class="l">Europe AdTech revenue YoY, Q2 2026 — about 4× GMV growth</div></div>
       <div class="kpi"><div class="v">3% → 4%+</div><div class="l">AdTech as % of GMV, today vs Group long-term target</div></div>
       <div class="kpi"><div class="v">21 · 3</div><div class="l">Markets in three 12-week waves (5 / 8 / 8)</div></div>
       <div class="kpi"><div class="v">~28 wks</div><div class="l">End to end, inside the ~12-month expected pre-close window</div></div>
@@ -326,7 +326,7 @@ footer b{color:var(--yellow)}
           <div class="c"><b>3.0%</b><i style="height:70%"></i></div>
           <div class="c tg"><b>4%+</b><i style="height:93%"></i></div>
         </div>
-        <div class="vb-l"><span>Y-3</span><span>Y-2</span><span>Y-1</span><span>Now</span><span>Target</span></div>
+        <div class="vb-l"><span>FY22</span><span>FY23</span><span>FY24</span><span>FY25</span><span>Target</span></div>
       </div>
       <div class="chart">
         <h4>Launch waves (weeks) and ownership split</h4>
@@ -386,13 +386,13 @@ footer b{color:var(--yellow)}
       </div>
       <div class="card d">
         <h3>Ownership is about to split</h3>
-        <p>Uber's €13bn offer for Delivery Hero keeps Glovo in 16 markets, while Spain, Portugal, Poland, Romania and Moldova go to SSW Partners. Closing is expected to take ~a year. Bosnia exited in August; Spain pulled out of 63 towns. The map is being concentrated, and HQ sits in a market that is moving.</p>
+        <p>Uber's €13bn offer for Delivery Hero keeps 16 Glovo markets (17 announced, minus Bosnia, which closed in August), while Spain, Portugal, Poland, Romania and Moldova go to SSW Partners. Closing is expected to take ~a year. In Spain, Glovo cut back activity in around 60 towns this year. The map is being concentrated, and HQ sits in a market that is moving.</p>
       </div>
     </div>
     <div class="grid g4" style="margin-top:18px">
       <div class="card stat"><div class="big">€13.2bn</div><div class="lab">Group GMV Q2 2026, +11.3% LfL</div></div>
       <div class="card stat"><div class="big">17–19%</div><div class="lab">FY26 revenue growth guidance, raised from 14–16%</div></div>
-      <div class="card stat"><div class="big">5–6×</div><div class="lab">ROAS cited for Brand Ads</div></div>
+      <div class="card stat"><div class="big">6×</div><div class="lab">Group ad ROAS for partners, FY25 (target ≥5×)</div></div>
       <div class="card stat"><div class="big">40k+</div><div class="lab">Partners on the AI assistant; +15% orders for restaurants using it</div></div>
     </div>
     <p class="note" style="margin-top:14px">Figures from Delivery Hero Q2 2026 results, the May 2026 company presentation, and public coverage of Retail Media Day and the Uber offer.</p>
@@ -423,7 +423,7 @@ footer b{color:var(--yellow)}
   <div class="wrap">
     <span class="eyebrow">03 · Market tiering model</span>
     <h2>Which markets go first, and why</h2>
-    <p class="lede">Each market is scored 1–5 on five dimensions. <b>Readiness = ad maturity + Q-commerce momentum + advertiser depth + ops readiness − regulatory friction.</b> Ownership lane and transition risk then decide wave placement — a high-readiness market with high transition risk is not automatically Wave 1.</p>
+    <p class="lede">Each market is scored 1–5 on five dimensions. <b>Readiness = ad maturity + Q-commerce momentum + advertiser depth + ops readiness − regulatory friction.</b> Ownership then pulls ready SSW markets forward, so they launch well before the deal closes. Transition risk does not change the wave; it decides how much hand-over documentation a launch needs.</p>
     <div class="tools">
       <span class="edit-hint">Edit any score — readiness recalculates, wave is yours to set</span>
       <span style="flex:1"></span>
@@ -456,7 +456,7 @@ footer b{color:var(--yellow)}
     </div>
     <div class="wave-sum" id="waveSum"></div>
     <div class="legend">
-      <span><b>Readiness</b> max 19 · <b>Auto-assign</b> uses readiness ≥ 14 → Wave 1, ≥ 10 → Wave 2, else Wave 3, then bumps markets with transition risk ≥ 4 down one wave unless readiness ≥ 17</span>
+      <span><b>Readiness</b> max 19 · <b>Auto-assign</b>: readiness ≥ 14 → Wave 1, ≥ 10 → Wave 2, else Wave 3; then any SSW market with readiness ≥ 13 moves to Wave 1 so it launches well before the deal closes</span>
       <span>Default scores are illustrative, built from public signals, meant to be replaced with internal data in week 1. Edits are saved in your browser.</span>
     </div>
     <div class="grid g3" style="margin-top:22px">
@@ -589,7 +589,7 @@ footer b{color:var(--yellow)}
           <h4>Top risks</h4>
           <ul contenteditable="true" data-key="risks">
             <li>RED — Cross-market audience segments require ring-fencing before close. Owner: Legal + Data. Due wk 11.</li>
-            <li>AMBER — Two reference advertisers in RO not yet signed. Owner: Commercial. Due wk 9.</li>
+            <li>AMBER — Two reference advertisers in RO not yet signed. Owner: Commercial. Due wk 11.</li>
           </ul>
         </div>
         <div>
@@ -686,12 +686,12 @@ const DEFAULT_MARKETS=[
   ["Portugal","ssw",4,4,4,4,2,4,1,"Shares infrastructure and agencies with Spain; low marginal effort."],
   ["Romania","ssw",4,4,3,4,2,4,1,"Strong CEE base; SSW-bound, so documented for hand-over."],
   ["Ukraine","uber",4,4,3,4,2,2,2,"Top-5 market historically; profitable; regional hub for Caucasus/Central Asia."],
-  ["Morocco","uber",3,4,3,4,2,1,2,"First African market; most mature African ad base."],
-  ["Kazakhstan","uber",3,4,3,3,2,1,2,"Largest Central Asian market; served from the Ukraine hub."],
+  ["Morocco","uber",3,4,3,4,2,1,2,"Glovo's first African market (2018); Africa is the fastest-growing region."],
+  ["Kazakhstan","uber",3,4,3,3,2,1,2,"Larger of Glovo's two Central Asian markets; served from the Ukraine hub."],
   ["Nigeria","uber",3,5,3,3,3,1,2,"Fastest-growing market; Q-commerce surging; Partner Ads self-serve is the lever."],
   ["Kenya","uber",3,4,3,3,2,1,2,"Established Glovo Ads market with FMCG adopters; strong mobile-money infrastructure."],
   ["Bulgaria","uber",3,3,3,3,2,1,2,"EU regulatory base similar to Romania; moderate advertiser depth."],
-  ["Croatia","uber",3,3,2,3,2,1,2,"EU market, tourism-driven seasonality favours video stories."],
+  ["Croatia","uber",3,3,3,3,2,1,2,"EU market, tourism-driven seasonality favours video stories."],
   ["Georgia","uber",3,3,2,3,1,1,2,"Low friction; good test bed for segmentation on smaller data volumes."],
   ["Serbia","uber",2,3,2,3,2,1,3,"Balkan cluster; launched with the core three formats."],
   ["Tunisia","uber",2,3,2,3,3,1,3,"Smaller advertiser base; follows Morocco playbook."],
@@ -737,7 +737,7 @@ document.querySelectorAll("#mkt th[data-k]").forEach(th=>th.addEventListener("cl
   if(sortKey===th.dataset.k)sortDir*=-1;else{sortKey=th.dataset.k;sortDir=["name","lane","wave"].includes(th.dataset.k)?1:-1;}render();}));
 document.querySelectorAll(".tools [data-f]").forEach(b=>b.addEventListener("click",()=>{filter=b.dataset.f;render();}));
 document.getElementById("autoWave").addEventListener("click",()=>{
-  markets.forEach(m=>{const s=sc(m);let w=s>=14?1:s>=10?2:3;if(m.risk>=4&&s<17&&w<3)w++;m.wave=w;});
+  markets.forEach(m=>{const s=sc(m);let w=s>=14?1:s>=10?2:3;if(m.lane==="ssw"&&s>=13)w=1;m.wave=w;});
   S.set("markets",markets.map(x=>Object.fromEntries(KEYS.map(k=>[k,x[k]]))));render();toast("Waves re-assigned from readiness + risk");
 });
 function resetMkt(quiet){markets=fromRows(DEFAULT_MARKETS);markets.forEach(m=>Object.defineProperty(m,"score",{get(){return sc(this)}}));S.del("markets");render();if(!quiet)toast("Scores reset to defaults")}
